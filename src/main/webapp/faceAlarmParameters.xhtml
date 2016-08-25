@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+
+	<ui:composition template="/WEB-INF/tags/layout.xhtml">
+		<ui:define name="content">
+<h:form>
+
+			<div class="well well-lg">
+			
+					
+				<p:fieldset legend="Face Alarm Parameters" toggleable="false" toggleSpeed="500">
+					<center>
+					<p:dataTable var="alarm" value="#{faceAlarmParametersMB.faceAlarmParametersList}">
+    <p:column headerText="Id">
+        <h:outputText value="#{alarm.id}" />
+    </p:column>
+ 
+ 	<p:column headerText="Image">
+        <p:graphicImage   url="http://localhost:8080/primefaces-spring-jpa-tutorial/images?id=#{alarm.id}" height="50">
+        
+       
+     
+        
+
+</p:graphicImage>
+    </p:column>
+    
+    <p:column headerText="Alarm Date">
+        <h:outputText value="#{alarm.alarmDate}" />
+    </p:column>
+ 
+ 
+    <p:column headerText="Alarm Id">
+        <h:outputText value="#{alarm.alarmId}" />
+    </p:column>
+ 
+    <p:column headerText="Alarm Camera">
+        <h:outputText value="#{alarm.alarmCamera}" />
+    </p:column>
+ 
+    <p:column headerText="Mach Score">
+        <h:outputText value="#{alarm.matchScore}" />
+    </p:column>
+    
+    <p:column headerText="Match Id">
+        <h:outputText value="#{alarm.matchId}" />
+    </p:column>
+    
+    <p:column headerText="Age">
+        <h:outputText value="#{alarm.age}" />
+    </p:column>
+    
+    <p:column headerText="Match Gender Value">
+        <h:outputText value="#{alarm.matchGenderValue}" />
+    </p:column>
+    
+    
+    
+    
+</p:dataTable>
+					</center>	
+				</p:fieldset>
+			</div>
+	</h:form>
+		</ui:define>
+		
+	
+	</ui:composition>
+
+
+
+</h:body>
+</html>

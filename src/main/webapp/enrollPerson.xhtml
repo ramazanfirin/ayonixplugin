@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+
+	<ui:composition template="/WEB-INF/tags/layout.xhtml">
+		<ui:define name="content">
+
+
+			<div class="well well-lg">
+			
+					
+				<p:fieldset legend="Enroll Person" toggleable="false" toggleSpeed="500">
+					<center>
+					<p:dataTable var="alarm" value="#{enrollPersonMB.enrollPersonList}">
+    <p:column headerText="Id">
+        <h:outputText value="#{alarm.id}" />
+    </p:column>
+ 
+ 	<p:column headerText="Gender">
+        <h:outputText value="#{alarm.gender}" />
+    </p:column>
+    
+    <p:column headerText="Age">
+        <h:outputText value="#{alarm.age}" />
+    </p:column>
+ 
+ 
+    <p:column headerText="Name">
+        <h:outputText value="#{alarm.name}" />
+    </p:column>
+ 
+    <p:column headerText="Surname">
+        <h:outputText value="#{alarm.surname}" />
+    </p:column>
+ 
+    <p:column headerText="DOB">
+        <h:outputText value="#{alarm.dob}" />
+    </p:column>
+    
+    <p:column headerText="Last Activity Date">
+        <h:outputText value="#{alarm.lastActivityDate}" />
+    </p:column>
+    
+    <p:column headerText="Enrollment Date">
+        <h:outputText value="#{alarm.enrollmentDate}" />
+    </p:column>
+    
+    <p:column headerText="Main Image Pose">
+        <h:outputText value="#{alarm.mainImagePose}" />
+    </p:column>
+    
+    <p:column headerText="Alarm Screen">
+        <h:outputText value="#{alarm.alarmScreen}" />
+    </p:column>
+    
+    <p:column headerText="Alarm Email">
+        <h:outputText value="#{alarm.alarmEmail}" />
+    </p:column>
+    
+    <p:column headerText="Alarm Email Value">
+        <h:outputText value="#{alarm.alarmEmailValue}" />
+    </p:column>
+    
+    <p:column headerText="Alarm Command">
+        <h:outputText value="#{alarm.alarmCommand}" />
+    </p:column>
+    
+    <p:column headerText="Alarm Command Value">
+        <h:outputText value="#{alarm.alarmCommandValue}" />
+    </p:column>
+    
+    <p:column headerText="Alarm Sound">
+        <h:outputText value="#{alarm.alarmSound}" />
+    </p:column>
+    
+    <p:column headerText="Alarm Sound Value">
+        <h:outputText value="#{alarm.alarmSoundValue}" />
+    </p:column>
+    
+    <p:column headerText="Category">
+        <h:outputText value="#{alarm.category}" />
+    </p:column>
+    
+    
+</p:dataTable>
+					</center>	
+				</p:fieldset>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+
+
+
+</h:body>
+</html>
