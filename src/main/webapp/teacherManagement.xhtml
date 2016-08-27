@@ -19,11 +19,11 @@
 					<center>
 				<h:form id="form1">
 				<p:messages id="messages"  autoUpdate="true" closable="true" />
-				<p:commandButton value="Create New" update=":form1:multiCarDetail" action="#{clazzMB.create}" oncomplete="PF('multiCarDialog').show()"> </p:commandButton>
-				<p:commandButton value="Refresh" action="#{clazzMB.refreshList}" update="datatable"> </p:commandButton>
+				<p:commandButton value="Create New" update=":form1:multiCarDetail" action="#{teacherMB.create}" oncomplete="PF('multiCarDialog').show()"> </p:commandButton>
+				<p:commandButton value="Refresh" action="#{teacherMB.refreshList}" update="datatable"> </p:commandButton>
 				
 				
-					<p:dataTable id="datatable" var="item" value="#{clazzMB.itemList}">
+					<p:dataTable id="datatable" var="item" value="#{teacherMB.itemList}">
     <p:column headerText="Id">
         <h:outputText value="#{item.id}" />
     </p:column>
@@ -34,26 +34,26 @@
  
    <p:column headerText="Güncelle">
              <p:commandButton  oncomplete="PF('multiCarDialog').show()" icon="ui-icon-search" update=":form1:multiCarDetail" title="Update">
-                <f:setPropertyActionListener value="#{item}" target="#{clazzMB.item}" />
+                <f:setPropertyActionListener value="#{item}" target="#{teacherMB.item}" />
             </p:commandButton>
         </p:column>
         
    <p:column headerText="Sil">
-             <p:commandButton update="datatable,:form1:messages" action="#{clazzMB.delete}" icon="ui-icon-search" title="Delete">
-                <f:setPropertyActionListener value="#{item}" target="#{clazzMB.item}" />
+             <p:commandButton update="datatable,:form1:messages" action="#{teacherMB.delete}" icon="ui-icon-search" title="Delete">
+                <f:setPropertyActionListener value="#{item}" target="#{teacherMB.item}" />
             </p:commandButton>
         </p:column>     
 </p:dataTable>
 
 
-<p:dialog header="Selected Class" id="modal" widgetVar="multiCarDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
+<p:dialog header="Selected Teacher" id="modal" widgetVar="multiCarDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
         <p:outputPanel id="multiCarDetail" style="text-align:center;">
             <h:panelGrid columns="3">
             <h:outputLabel value="Name" ></h:outputLabel>
             <h:outputLabel value=":" ></h:outputLabel>
-            <h:inputText value="#{clazzMB.item.name}"></h:inputText>
+            <h:inputText value="#{teacherMB.item.name}"></h:inputText>
             </h:panelGrid>
-            <p:commandButton value="Kaydet" action="#{clazzMB.merge}" update="datatable,:form1:messages" oncomplete="PF('multiCarDialog').hide()" ></p:commandButton>
+            <p:commandButton value="Kaydet" action="#{teacherMB.merge}" update="datatable,:form1:messages" oncomplete="PF('multiCarDialog').hide()" ></p:commandButton>
         </p:outputPanel>
     </p:dialog>
 

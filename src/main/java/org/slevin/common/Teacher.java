@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Immutable;
 
-@Immutable
+
 @Entity
 @Table(name="Teacher")
 

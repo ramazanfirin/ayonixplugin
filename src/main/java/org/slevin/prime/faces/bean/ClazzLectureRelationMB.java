@@ -8,16 +8,19 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 
 import org.slevin.common.Clazz;
+import org.slevin.common.ClazzLectureRelation;
 import org.slevin.common.Teacher;
+import org.slevin.dao.ClazzDao;
+import org.slevin.dao.ClazzLectureRelationDao;
 import org.slevin.dao.TeacherDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 
-@Component(value="teacherMB")
+@Component(value="clazzLectureRelationMB")
 @ViewScoped
-public class TeacherMB extends BaseMB implements Serializable {
+public class ClazzLectureRelationMB extends BaseMB implements Serializable {
 	
 	
 
@@ -28,21 +31,30 @@ public class TeacherMB extends BaseMB implements Serializable {
 
 
 	@Autowired
-	private TeacherDao itemDao;
+	private ClazzLectureRelationDao itemDao;
 	
-
-	private List<Teacher> itemList;
-	private String name;
-	private Teacher item = new Teacher();
+	@Autowired
+	private ClazzDao clazzDao;
+	
+	@Autowired
+	private TeacherDao teacherDao;
+	
+	
+	private List<ClazzLectureRelation> itemList;
+	private ClazzLectureRelation item = new ClazzLectureRelation();
+	
+	private List<Clazz> clazzList;
+	private List<Teacher> teacherList;
 	
 	@PostConstruct
     public void init() throws Exception {
+		clazzList = clazzDao.findAll();
+		teacherList = teacherDao.findAll();
 		refreshList();
     }
 
 	public void create() throws Exception{
-		item = new Teacher();
-		item.setName("");
+		item = new ClazzLectureRelation();
 		System.out.println("create");
 	}
 	
@@ -65,21 +77,23 @@ public class TeacherMB extends BaseMB implements Serializable {
 		
 	}
 
-	public List<Teacher> getItemList() {
+	public List<ClazzLectureRelation> getItemList() {
 		return itemList;
 	}
 
-	public void setItemList(List<Teacher> itemList) {
+	public void setItemList(List<ClazzLectureRelation> itemList) {
 		this.itemList = itemList;
 	}
 
-	public Teacher getItem() {
+	public ClazzLectureRelation getItem() {
 		return item;
 	}
 
-	public void setItem(Teacher item) {
+	public void setItem(ClazzLectureRelation item) {
 		this.item = item;
 	}
+
+
 
 
 
