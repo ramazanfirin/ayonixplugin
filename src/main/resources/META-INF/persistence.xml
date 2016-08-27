@@ -13,6 +13,10 @@
 		<class>org.slevin.common.FaceAlarmParameters</class>
 		<class>org.slevin.common.IpCamera</class>
 		<class>org.slevin.common.Category</class>
+		<class>org.slevin.common.Clazz</class>
+		<class>org.slevin.common.Lecture</class>
+		<class>org.slevin.common.Teacher</class>
+		<class>org.slevin.common.ClazzLectureRelation</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 	</persistence-unit>

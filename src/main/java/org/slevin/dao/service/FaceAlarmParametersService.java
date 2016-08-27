@@ -1,11 +1,9 @@
 package org.slevin.dao.service;
 
 
-import org.slevin.common.AlarmHistory;
-import org.slevin.common.EnrollPerson;
+import java.util.List;
+
 import org.slevin.common.FaceAlarmParameters;
-import org.slevin.dao.AlarmHistoryDao;
-import org.slevin.dao.EnrollPersonDao;
 import org.slevin.dao.FaceAlarmParametersDao;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Transactional
 public class FaceAlarmParametersService extends EntityService<FaceAlarmParameters> implements FaceAlarmParametersDao {
+
+	public FaceAlarmParameters findByAlarmId(Long alarmId) throws Exception {
+		List<FaceAlarmParameters> list=findByProperty("alarmId", alarmId);
+		if(list.size()>0)
+			return list.get(0);
+		else
+			return null;
+	}
 
 	
 }
