@@ -1,0 +1,33 @@
+sp_configure 'show advanced options', 1  
+GO   
+RECONFIGURE;  
+GO  
+sp_configure 'Ole Automation Procedures', 1  
+GO   
+RECONFIGURE;  
+GO   
+sp_configure 'show advanced options', 1  
+GO   
+RECONFIGURE;  
+
+
+create procedure [dbo].[proc.CallWebServices]
+@Parametro varchar(20) = NULL
+AS
+   Declare @obj INT
+   Declare @ValorDeRegresso INT
+   Declare @sURL varchar(200)
+   Declare @response charchar(8000)
+   Declare @hr INT 
+   Declare @src varchar(255)
+   Declare @desc varchar(255) 
+set @sURL ='http://10.120.18.197:8080/primefaces-spring-jpa-tutorial/rest/hello/test?id='+@Parametro
+
+   EXEC sp_OACreate 'MSXML2.ServerXMLHttp',@obj OUT
+   EXEC sp_OAMethod @obj,'Open',NULL,'GET',@sURL,false
+   EXEC sp_OAMethod @obj,'send'
+   EXEC sp_OAGetProperty @obj,'responseText',@response OUT
+   
+   select @response [response]
+   EXEC sp_OADestroy @obj
+return   
