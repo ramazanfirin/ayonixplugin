@@ -23,7 +23,7 @@
 				<p:commandButton value="Refresh" action="#{clazzMB.refreshList}" update="datatable"> </p:commandButton>
 				
 				
-					<p:dataTable id="datatable" var="item" value="#{clazzMB.clazzList}">
+					<p:dataTable id="datatable" var="item" value="#{clazzMB.itemList}">
     <p:column headerText="Id">
         <h:outputText value="#{item.id}" />
     </p:column>
@@ -34,13 +34,13 @@
  
    <p:column headerText="Güncelle">
              <p:commandButton  oncomplete="PF('multiCarDialog').show()" icon="ui-icon-search" update=":form1:multiCarDetail" title="Update">
-                <f:setPropertyActionListener value="#{item}" target="#{clazzMB.clazz}" />
+                <f:setPropertyActionListener value="#{item}" target="#{clazzMB.item}" />
             </p:commandButton>
         </p:column>
         
    <p:column headerText="Sil">
              <p:commandButton update="datatable,:form1:messages" action="#{clazzMB.delete}" icon="ui-icon-search" title="Delete">
-                <f:setPropertyActionListener value="#{item}" target="#{clazzMB.clazz}" />
+                <f:setPropertyActionListener value="#{item}" target="#{clazzMB.item}" />
             </p:commandButton>
         </p:column>     
 </p:dataTable>
@@ -51,7 +51,7 @@
             <h:panelGrid columns="3">
             <h:outputLabel value="Name" ></h:outputLabel>
             <h:outputLabel value=":" ></h:outputLabel>
-            <h:inputText value="#{clazzMB.clazz.name}"></h:inputText>
+            <h:inputText value="#{clazzMB.item.name}"></h:inputText>
             </h:panelGrid>
             <p:commandButton value="Kaydet" action="#{clazzMB.merge}" update="datatable,:form1:messages" oncomplete="PF('multiCarDialog').hide()" ></p:commandButton>
         </p:outputPanel>
