@@ -14,10 +14,27 @@
 
 			<div class="well well-lg">
 			
+			<h:form id="form1">			
+				<p:fieldset legend="Class-Lecture  Management" toggleable="false" toggleSpeed="500">
+					<p:fieldset  style="margin-bottom:20px">
+        <h:panelGrid columns="3" cellpadding="5">
+            <h:outputLabel value="Date"> </h:outputLabel>
+            <h:outputLabel value=":"> </h:outputLabel>
+            <p:calendar value="#{clazzLectureRelationMB.searchtDate}"></p:calendar>
+            
+    <h:outputLabel value="Class" ></h:outputLabel>
+            	<h:outputLabel value=":" ></h:outputLabel>
+            	<p:selectOneMenu  id="car27" value="#{clazzLectureRelationMB.searchClass}">
+                	<f:selectItems value="#{clazzLectureRelationMB.clazzList}" var="item" itemLabel="#{item.name}" itemValue="#{item.name}" />
+        		</p:selectOneMenu>
+        		
+            </h:panelGrid>
+            <p:commandButton value="Search" action="#{clazzLectureRelationMB.search}" update=":form1:datatable"></p:commandButton>
+    </p:fieldset>
 					
-				<p:fieldset legend="Class Management" toggleable="false" toggleSpeed="500">
+					
 					<center>
-				<h:form id="form1">
+			
 				<p:messages id="messages"  autoUpdate="true" closable="true" />
 				<p:commandButton value="Create New" update=":form1:multiCarDetail" action="#{clazzLectureRelationMB.create}" oncomplete="PF('multiCarDialog').show()"> </p:commandButton>
 				<p:commandButton value="Refresh" action="#{clazzLectureRelationMB.refreshList}" update="datatable"> </p:commandButton>
@@ -28,12 +45,30 @@
         <h:outputText value="#{item.id}" />
     </p:column>
  
-   <p:column headerText="Name">
-        <h:outputText value="#{item.name}" escape="false" />
+   <p:column headerText="Class Name">
+        <h:outputText value="#{item.clazz.name}" />
     </p:column>
+    
+     <p:column headerText="Start Date">
+        <h:outputText value="#{item.startDate}" />
+    </p:column>
+    
+    <p:column headerText="End Date">
+        <h:outputText value="#{item.endDate}" />
+    </p:column>
+    
+    
+    <p:column headerText="Lecture Name">
+        <h:outputText value="#{item.lecture.name}" />
+    </p:column>
+    
+     <p:column headerText="Teacher Name">
+        <h:outputText value="#{item.teacher.name}" />
+    </p:column>
+
  
    <p:column headerText="Güncelle">
-             <p:commandButton  oncomplete="PF('multiCarDialog').show()" icon="ui-icon-search" update=":form1:multiCarDetail" title="Update">
+             <p:commandButton action="#{clazzLectureRelationMB.changeToUpdate}" oncomplete="PF('multiCarDialog').show()" icon="ui-icon-search" update=":form1:multiCarDetail" title="Update">
                 <f:setPropertyActionListener value="#{item}" target="#{clazzLectureRelationMB.item}" />
             </p:commandButton>
         </p:column>
@@ -46,20 +81,85 @@
 </p:dataTable>
 
 
-<p:dialog header="Selected Teacher" id="modal" widgetVar="multiCarDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
-        <p:outputPanel id="multiCarDetail" style="text-align:center;">
+<p:dialog header="Selected Lecture" id="modal2" widgetVar="multiCarDialog2" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
+
+	<p:outputPanel id="multiCarDetail2">
             <h:panelGrid columns="3">
             	<h:outputLabel value="Class" ></h:outputLabel>
             	<h:outputLabel value=":" ></h:outputLabel>
-            	<p:selectOneMenu id="car" value="#{clazzLectureRelationMB.item.clazz}">
-                	<f:selectItems value="#{clazzLectureRelationMB.clazzList}" var="item" itemLabel="#{item.name}" itemValue="#{item}" />
+            	<p:selectOneMenu disabled="true" id="car2" value="#{clazzLectureRelationMB.item.clazz.id}">
+                	<f:selectItems value="#{clazzLectureRelationMB.clazzList}" var="item" itemLabel="#{item.name}" itemValue="#{item.id}" />
         		</p:selectOneMenu>
         		
         		<h:outputLabel value="Teacher" ></h:outputLabel>
             	<h:outputLabel value=":" ></h:outputLabel>
-            	<p:selectOneMenu id="teacher" value="#{clazzLectureRelationMB.item.teacher}">
-                	<f:selectItems value="#{clazzLectureRelationMB.teacherList}" var="item" itemLabel="#{item.name}" itemValue="#{item}" />
+            	<p:selectOneMenu disabled="true" id="teacher2" value="#{clazzLectureRelationMB.item.teacher.id}">
+                	<f:selectItems value="#{clazzLectureRelationMB.teacherList}" var="item" itemLabel="#{item.name}" itemValue="#{item.id}" />
         		</p:selectOneMenu>
+        		
+        		<h:outputLabel value="Lecture" ></h:outputLabel>
+            	<h:outputLabel value=":" ></h:outputLabel>
+            	<p:selectOneMenu disabled="true" id="Lecture2" value="#{clazzLectureRelationMB.item.lecture.id}">
+                	<f:selectItems value="#{clazzLectureRelationMB.lectureList}" var="item" itemLabel="#{item.name}" itemValue="#{item.id}" />
+        		</p:selectOneMenu>
+        		
+        		
+        		
+            	<h:outputLabel value="Start Date" ></h:outputLabel>
+            	<h:outputLabel value=":" ></h:outputLabel>
+            	<p:calendar showOn="button" pattern="MM/dd/yyyy HH:mm:ss" value="#{clazzLectureRelationMB.item.startDate}"></p:calendar>
+        		
+        		<h:outputLabel value="End Date" ></h:outputLabel>
+            	<h:outputLabel value=":" ></h:outputLabel>
+            	<p:calendar showOn="button" pattern="MM/dd/yyyy HH:mm:ss" value ="#{clazzLectureRelationMB.item.endDate}"></p:calendar>
+        		
+        		
+            </h:panelGrid>
+            <p:commandButton value="Kaydet" action="#{clazzLectureRelationMB.update}" update="datatable,:form1:messages" oncomplete="PF('multiCarDialog2').hide()" ></p:commandButton>
+        </p:outputPanel>
+
+
+
+</p:dialog>
+
+<p:dialog header="Selected Lecture" id="modal" widgetVar="multiCarDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
+        <p:outputPanel id="multiCarDetail">
+            <h:panelGrid columns="3">
+            	<h:outputLabel value="Class" ></h:outputLabel>
+            	<h:outputLabel value=":" ></h:outputLabel>
+            	<p:selectOneMenu disabled="#{clazzLectureRelationMB.update}" id="car" value="#{clazzLectureRelationMB.item.clazz.id}">
+                	<f:selectItems value="#{clazzLectureRelationMB.clazzList}" var="item" itemLabel="#{item.name}" itemValue="#{item.id}" />
+        		</p:selectOneMenu>
+        		
+        		<h:outputLabel value="Teacher" ></h:outputLabel>
+            	<h:outputLabel value=":" ></h:outputLabel>
+            	<p:selectOneMenu disabled="#{clazzLectureRelationMB.update}" id="teacher" value="#{clazzLectureRelationMB.item.teacher.id}">
+                	<f:selectItems value="#{clazzLectureRelationMB.teacherList}" var="item" itemLabel="#{item.name}" itemValue="#{item.id}" />
+        		</p:selectOneMenu>
+        		
+        		<h:outputLabel value="Lecture" ></h:outputLabel>
+            	<h:outputLabel value=":" ></h:outputLabel>
+            	<p:selectOneMenu  disabled="#{clazzLectureRelationMB.update}" id="Lecture" value="#{clazzLectureRelationMB.item.lecture.id}">
+                	<f:selectItems value="#{clazzLectureRelationMB.lectureList}" var="item" itemLabel="#{item.name}" itemValue="#{item.id}" />
+        		</p:selectOneMenu>
+        		
+        		
+        		<h:outputLabel value="Start Time" ></h:outputLabel>
+            	<h:outputLabel value=":" ></h:outputLabel>
+            	<p:calendar timeOnly="true" pattern="HH:mm" value="#{clazzLectureRelationMB.item.startDate}"></p:calendar>
+        		
+        		<h:outputLabel value="End Time" ></h:outputLabel>
+            	<h:outputLabel value=":" ></h:outputLabel>
+            	<p:calendar timeOnly="true" pattern="HH:mm" value="#{clazzLectureRelationMB.item.endDate}"></p:calendar>
+            	
+            	<h:outputLabel rendered="#{!clazzLectureRelationMB.update}" value="Start Date" ></h:outputLabel>
+            	<h:outputLabel rendered="#{!clazzLectureRelationMB.update}" value=":" ></h:outputLabel>
+            	<p:calendar rendered="#{!clazzLectureRelationMB.update}" value="#{clazzLectureRelationMB.startDate}"></p:calendar>
+        		
+        		<h:outputLabel rendered="#{!clazzLectureRelationMB.update}" value="End Date" ></h:outputLabel>
+            	<h:outputLabel rendered="#{!clazzLectureRelationMB.update}" value=":" ></h:outputLabel>
+            	<p:calendar rendered="#{!clazzLectureRelationMB.update}" value="#{clazzLectureRelationMB.endDate}"></p:calendar>
+        		
         		
             </h:panelGrid>
             <p:commandButton value="Kaydet" action="#{clazzLectureRelationMB.merge}" update="datatable,:form1:messages" oncomplete="PF('multiCarDialog').hide()" ></p:commandButton>
@@ -68,10 +168,11 @@
 
 
 
-					</h:form>
+				
 					
 					</center>	
 				</p:fieldset>
+					</h:form>
 			</div>
 
 		</ui:define>

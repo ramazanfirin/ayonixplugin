@@ -36,7 +36,15 @@
     </p:column>
     
     <p:column headerText="Location">
-        <h:outputText value="#{alarm.ipCamera.alias}" />
+        <h:outputText value="#{alarm.ipCamera.name}" />
+    </p:column>
+    
+     <p:column headerText="Lecture">
+        <h:outputText value="#{alarm.clazzLectureRelation.lecture.name}" />
+    </p:column>
+    
+    <p:column headerText="Teacher">
+        <h:outputText value="#{alarm.clazzLectureRelation.teacher.name}" />
     </p:column>
     
     <p:column headerText="Score">

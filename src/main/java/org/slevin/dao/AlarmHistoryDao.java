@@ -1,10 +1,11 @@
 package org.slevin.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slevin.common.AlarmHistory;
+import org.slevin.common.Clazz;
 import org.slevin.dto.AlarmHistoryDto;
-import org.slevin.dto.AlarmHistoryDtoV2;
 
 
 public interface AlarmHistoryDao extends EntityDao<AlarmHistory> {

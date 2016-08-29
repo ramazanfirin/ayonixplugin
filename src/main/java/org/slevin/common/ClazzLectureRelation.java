@@ -37,10 +37,13 @@ public class ClazzLectureRelation {
 	private Date endDate;
 	
 	@ManyToOne
-	private Teacher teacher;
+	private Teacher teacher = new Teacher();
 	
 	@ManyToOne
-	private Clazz clazz;
+	private Clazz clazz = new Clazz();
+	
+	@ManyToOne
+	private Lecture lecture = new Lecture();
 
 	public Long getId() {
 		return id;
@@ -80,6 +83,14 @@ public class ClazzLectureRelation {
 
 	public void setClazz(Clazz clazz) {
 		this.clazz = clazz;
+	}
+
+	public Lecture getLecture() {
+		return lecture;
+	}
+
+	public void setLecture(Lecture lecture) {
+		this.lecture = lecture;
 	}
 	
 	

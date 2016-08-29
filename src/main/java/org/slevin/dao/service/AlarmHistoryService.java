@@ -1,17 +1,21 @@
 package org.slevin.dao.service;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import org.slevin.common.AlarmHistory;
 import org.slevin.common.Category;
+import org.slevin.common.ClazzLectureRelation;
 import org.slevin.common.EnrollPerson;
 import org.slevin.common.FaceAlarmParameters;
 import org.slevin.common.IpCamera;
 import org.slevin.dao.AlarmHistoryDao;
 import org.slevin.dao.CategoryDao;
+import org.slevin.dao.ClazzLectureRelationDao;
 import org.slevin.dao.EnrollPersonDao;
 import org.slevin.dao.FaceAlarmParametersDao;
 import org.slevin.dao.IpCameraDao;
@@ -37,6 +41,9 @@ public class AlarmHistoryService extends EntityService<AlarmHistory> implements 
 	@Autowired
 	private IpCameraDao ipCameraDao;
 	
+	@Autowired
+	private ClazzLectureRelationDao clazzLectureRelationDao;
+	
 	public List<AlarmHistoryDto> findAlarmHistory() throws Exception {
 		// TODO Auto-generated method stub
 		List<AlarmHistoryDto> returnList= new ArrayList<AlarmHistoryDto>();
@@ -59,6 +66,16 @@ public class AlarmHistoryService extends EntityService<AlarmHistory> implements 
 			
 			IpCamera ipCamera = ipCameraDao.findById(alarmHistory.getCameraId());
 			dto.setIpCamera(ipCamera);
+			
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+			String dateInString = "02-08-2016 16:00:00";
+			Date date = sdf.parse(dateInString);
+			//date = alarmHistory.getDate();
+			
+			
+			ClazzLectureRelation clazzLectureRelation = clazzLectureRelationDao.findNearest(date,ipCamera.getName());
+			dto.setClazzLectureRelation(clazzLectureRelation);
 			
 			returnList.add(dto);
 		}

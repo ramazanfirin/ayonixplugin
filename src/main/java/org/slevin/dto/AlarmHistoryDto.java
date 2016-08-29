@@ -2,6 +2,7 @@ package org.slevin.dto;
 
 import org.slevin.common.AlarmHistory;
 import org.slevin.common.Category;
+import org.slevin.common.ClazzLectureRelation;
 import org.slevin.common.EnrollPerson;
 import org.slevin.common.FaceAlarmParameters;
 import org.slevin.common.IpCamera;
@@ -12,6 +13,7 @@ public class AlarmHistoryDto {
 	EnrollPerson enrollPerson;
 	Category category;
 	IpCamera ipCamera;
+	ClazzLectureRelation clazzLectureRelation;
 	
 	public AlarmHistory getAlarmHistory() {
 		return alarmHistory;
@@ -42,6 +44,12 @@ public class AlarmHistoryDto {
 	}
 	public void setIpCamera(IpCamera ipCamera) {
 		this.ipCamera = ipCamera;
+	}
+	public ClazzLectureRelation getClazzLectureRelation() {
+		return clazzLectureRelation;
+	}
+	public void setClazzLectureRelation(ClazzLectureRelation clazzLectureRelation) {
+		this.clazzLectureRelation = clazzLectureRelation;
 	}
 	
 }
