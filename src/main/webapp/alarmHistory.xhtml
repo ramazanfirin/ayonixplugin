@@ -13,11 +13,30 @@
 
 
 			<div class="well well-lg">
+			<h:form id="form1">
 			
 					
 				<p:fieldset legend="Home Page" toggleable="false" toggleSpeed="500">
+					<p:fieldset  style="margin-bottom:20px">
+        <h:panelGrid columns="3" cellpadding="5">
+            <h:outputLabel value="Date"> </h:outputLabel>
+            <h:outputLabel value=":"> </h:outputLabel>
+            <p:calendar value="#{alarmHistoryMB.searchDate}"></p:calendar>
+            
+    <h:outputLabel value="Class" ></h:outputLabel>
+            	<h:outputLabel value=":" ></h:outputLabel>
+            	<p:selectOneMenu  id="car27" value="#{alarmHistoryMB.searchClass}">
+                	<f:selectItems value="#{clazzLectureRelationMB.clazzList}" var="item" itemLabel="#{item.name}" itemValue="#{item.name}" />
+        		</p:selectOneMenu>
+        		
+            </h:panelGrid>
+            <p:commandButton value="Search" action="#{alarmHistoryMB.search}" update=":form1:datatable"></p:commandButton>
+    </p:fieldset>
+					
+					
+					
 					<center>
-					<p:dataTable var="alarm" value="#{alarmHistoryMB.alarmHistoryList}">
+					<p:dataTable id="datatable" var="alarm" value="#{alarmHistoryMB.alarmHistoryList}">
     <p:column headerText="Id">
         <h:outputText value="#{alarm.id}" />
     </p:column>
@@ -60,6 +79,7 @@
 </p:dataTable>
 					</center>	
 				</p:fieldset>
+				</h:form>
 			</div>
 
 		</ui:define>

@@ -2,6 +2,7 @@ package org.slevin.prime.faces.bean;
 
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -31,12 +32,18 @@ public class AlarmHistoryMB implements Serializable {
 	
 
 	private List<AlarmHistory> alarmHistoryList;
+	private Date searchDate;
+	
+	private String searchClass;
 	
 	@PostConstruct
     public void init() throws Exception {
-		refreshList();
+		
     }
 
+	public void search() throws Exception{
+		refreshList();
+	}
 
 
 	public void refreshList() throws Exception {
@@ -55,6 +62,30 @@ public class AlarmHistoryMB implements Serializable {
 
 	public void setAlarmHistoryList(List<AlarmHistory> alarmHistoryList) {
 		this.alarmHistoryList = alarmHistoryList;
+	}
+
+
+
+	public Date getSearchDate() {
+		return searchDate;
+	}
+
+
+
+	public void setSearchDate(Date searchDate) {
+		this.searchDate = searchDate;
+	}
+
+
+
+	public String getSearchClass() {
+		return searchClass;
+	}
+
+
+
+	public void setSearchClass(String searchClass) {
+		this.searchClass = searchClass;
 	}
 
 	

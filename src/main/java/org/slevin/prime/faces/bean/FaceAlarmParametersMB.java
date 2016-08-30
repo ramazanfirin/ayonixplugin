@@ -3,6 +3,7 @@ package org.slevin.prime.faces.bean;
 
 import java.io.ByteArrayInputStream;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -37,11 +38,19 @@ public class FaceAlarmParametersMB implements Serializable {
 
 	private List<FaceAlarmParameters> faceAlarmParametersList;
 	
+	private Date searchDate;
+	
+	private String searchClass;
+	
 	@PostConstruct
     public void init() throws Exception {
-		refreshList();
+		//refreshList();
     }
 
+	public void search() throws Exception{
+		refreshList();
+	}
+	
 	public StreamedContent getImage() throws Exception{
 		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 	  String action = params.get("id");
@@ -60,7 +69,7 @@ public class FaceAlarmParametersMB implements Serializable {
 
 
 	public void refreshList() throws Exception {
-		faceAlarmParametersList = faceAlarmParametersDao.findAll();
+		faceAlarmParametersList = faceAlarmParametersDao.find(searchDate, searchClass);
 		System.out.println("alarm size="+faceAlarmParametersList.size());
 		
 	}
@@ -76,6 +85,22 @@ public class FaceAlarmParametersMB implements Serializable {
 	public void setFaceAlarmParametersList(
 			List<FaceAlarmParameters> faceAlarmParametersList) {
 		this.faceAlarmParametersList = faceAlarmParametersList;
+	}
+
+	public Date getSearchDate() {
+		return searchDate;
+	}
+
+	public void setSearchDate(Date searchDate) {
+		this.searchDate = searchDate;
+	}
+
+	public String getSearchClass() {
+		return searchClass;
+	}
+
+	public void setSearchClass(String searchClass) {
+		this.searchClass = searchClass;
 	}
 
 

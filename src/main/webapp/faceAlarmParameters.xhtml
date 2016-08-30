@@ -10,14 +10,33 @@
 
 	<ui:composition template="/WEB-INF/tags/layout.xhtml">
 		<ui:define name="content">
-<h:form>
+<h:form id="form1">
 
 			<div class="well well-lg">
 			
 					
 				<p:fieldset legend="Face Alarm Parameters" toggleable="false" toggleSpeed="500">
+					
+					<p:fieldset  style="margin-bottom:20px">
+        <h:panelGrid columns="3" cellpadding="5">
+            <h:outputLabel value="Date"> </h:outputLabel>
+            <h:outputLabel value=":"> </h:outputLabel>
+            <p:calendar value="#{faceAlarmParametersMB.searchDate}"></p:calendar>
+            
+    <h:outputLabel value="Class" ></h:outputLabel>
+            	<h:outputLabel value=":" ></h:outputLabel>
+            	<p:selectOneMenu  id="car27" value="#{faceAlarmParametersMB.searchClass}">
+                	<f:selectItems value="#{clazzLectureRelationMB.clazzList}" var="item" itemLabel="#{item.name}" itemValue="#{item.name}" />
+        		</p:selectOneMenu>
+        		
+            </h:panelGrid>
+            <p:commandButton value="Search" action="#{faceAlarmParametersMB.search}" update=":form1:datatable"></p:commandButton>
+    </p:fieldset>
+					
+					
+					
 					<center>
-					<p:dataTable var="alarm" value="#{faceAlarmParametersMB.faceAlarmParametersList}">
+					<p:dataTable var="alarm" id="datatable" value="#{faceAlarmParametersMB.faceAlarmParametersList}">
     <p:column headerText="Id">
         <h:outputText value="#{alarm.id}" />
     </p:column>

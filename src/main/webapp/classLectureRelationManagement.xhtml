@@ -65,6 +65,12 @@
      <p:column headerText="Teacher Name">
         <h:outputText value="#{item.teacher.name}" />
     </p:column>
+    
+    <p:column headerText="Attandance list">
+        <p:commandButton action="#{clazzLectureRelationMB.attandenceList}" oncomplete="PF('multiCarDialog2').show()" icon="ui-icon-search" update=":form1:multiCarDetail2,:form1:datatable2" title="Update">
+                <f:setPropertyActionListener value="#{item}" target="#{clazzLectureRelationMB.item}" />
+            </p:commandButton>
+    </p:column>
 
  
    <p:column headerText="Güncelle">
@@ -81,41 +87,57 @@
 </p:dataTable>
 
 
-<p:dialog header="Selected Lecture" id="modal2" widgetVar="multiCarDialog2" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
+<p:dialog header="Selected Lecture" id="modal2" widgetVar="multiCarDialog2" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="1000">
 
 	<p:outputPanel id="multiCarDetail2">
-            <h:panelGrid columns="3">
-            	<h:outputLabel value="Class" ></h:outputLabel>
-            	<h:outputLabel value=":" ></h:outputLabel>
-            	<p:selectOneMenu disabled="true" id="car2" value="#{clazzLectureRelationMB.item.clazz.id}">
-                	<f:selectItems value="#{clazzLectureRelationMB.clazzList}" var="item" itemLabel="#{item.name}" itemValue="#{item.id}" />
-        		</p:selectOneMenu>
-        		
-        		<h:outputLabel value="Teacher" ></h:outputLabel>
-            	<h:outputLabel value=":" ></h:outputLabel>
-            	<p:selectOneMenu disabled="true" id="teacher2" value="#{clazzLectureRelationMB.item.teacher.id}">
-                	<f:selectItems value="#{clazzLectureRelationMB.teacherList}" var="item" itemLabel="#{item.name}" itemValue="#{item.id}" />
-        		</p:selectOneMenu>
-        		
-        		<h:outputLabel value="Lecture" ></h:outputLabel>
-            	<h:outputLabel value=":" ></h:outputLabel>
-            	<p:selectOneMenu disabled="true" id="Lecture2" value="#{clazzLectureRelationMB.item.lecture.id}">
-                	<f:selectItems value="#{clazzLectureRelationMB.lectureList}" var="item" itemLabel="#{item.name}" itemValue="#{item.id}" />
-        		</p:selectOneMenu>
-        		
-        		
-        		
-            	<h:outputLabel value="Start Date" ></h:outputLabel>
-            	<h:outputLabel value=":" ></h:outputLabel>
-            	<p:calendar showOn="button" pattern="MM/dd/yyyy HH:mm:ss" value="#{clazzLectureRelationMB.item.startDate}"></p:calendar>
-        		
-        		<h:outputLabel value="End Date" ></h:outputLabel>
-            	<h:outputLabel value=":" ></h:outputLabel>
-            	<p:calendar showOn="button" pattern="MM/dd/yyyy HH:mm:ss" value ="#{clazzLectureRelationMB.item.endDate}"></p:calendar>
-        		
-        		
-            </h:panelGrid>
-            <p:commandButton value="Kaydet" action="#{clazzLectureRelationMB.update}" update="datatable,:form1:messages" oncomplete="PF('multiCarDialog2').hide()" ></p:commandButton>
+        
+        <p:dataTable var="alarm" id="datatable2" rows="5" paginator="true" value="#{clazzLectureRelationMB.alarmHistoryList}">
+    <p:column headerText="Id">
+        <h:outputText value="#{alarm.alarmHistory.id}" />
+    </p:column>
+ 
+ <p:column headerText="Image">
+        <p:graphicImage   url="http://localhost:8080/primefaces-spring-jpa-tutorial/images?id=#{alarm.faceAlarmParameters.id}" height="50">
+		</p:graphicImage>
+    </p:column>
+ 
+    <p:column headerText="Name">
+        <h:outputText value="#{alarm.enrollPerson.name}  #{alarm.enrollPerson.surname} " escape="false" />
+    </p:column>
+ 
+    <p:column headerText="Date">
+        <h:outputText value="#{alarm.alarmHistory.date}" />
+    </p:column>
+    
+    <p:column headerText="Location">
+        <h:outputText value="#{alarm.ipCamera.name}" />
+    </p:column>
+    
+     <p:column headerText="Lecture">
+        <h:outputText value="#{alarm.clazzLectureRelation.lecture.name}" />
+    </p:column>
+    
+    <p:column headerText="Teacher">
+        <h:outputText value="#{alarm.clazzLectureRelation.teacher.name}" />
+    </p:column>
+    
+    <p:column headerText="Score">
+        <h:outputText value="#{alarm.alarmHistory.score}" />
+    </p:column>
+    
+    <p:column headerText="Gender">
+        <h:outputText value="#{alarm.alarmHistory.gender}" />
+    </p:column>
+    
+    <p:column headerText="Age">
+        <h:outputText value="#{alarm.alarmHistory.age}" />
+    </p:column>
+    
+     <p:column headerText="Category">
+        <h:outputText value="#{alarm.category.name}" />
+    </p:column>
+</p:dataTable>
+        <p:commandButton value="Close" oncomplete="PF('multiCarDialog2').hide()"></p:commandButton>
         </p:outputPanel>
 
 

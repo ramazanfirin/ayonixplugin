@@ -13,10 +13,12 @@ import org.slevin.common.Clazz;
 import org.slevin.common.ClazzLectureRelation;
 import org.slevin.common.Lecture;
 import org.slevin.common.Teacher;
+import org.slevin.dao.AlarmHistoryDao;
 import org.slevin.dao.ClazzDao;
 import org.slevin.dao.ClazzLectureRelationDao;
 import org.slevin.dao.LectureDao;
 import org.slevin.dao.TeacherDao;
+import org.slevin.dto.AlarmHistoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -43,6 +45,9 @@ public class ClazzLectureRelationMB extends BaseMB implements Serializable {
 	@Autowired
 	private TeacherDao teacherDao;
 	
+	@Autowired
+	private AlarmHistoryDao alarmHistoryDao;
+
 	
 	@Autowired
 	private LectureDao lectureDao;
@@ -54,6 +59,10 @@ public class ClazzLectureRelationMB extends BaseMB implements Serializable {
 	private List<Teacher> teacherList;
 	
 	private List<Lecture> lectureList;
+	
+	
+
+	private List<AlarmHistoryDto> alarmHistoryList;
 	
 	
 	private Date startDate;
@@ -74,6 +83,22 @@ public class ClazzLectureRelationMB extends BaseMB implements Serializable {
 	
 	public void search() throws Exception{
 		refreshList();
+	}
+	
+	public List<AlarmHistoryDto> getAlarmHistoryList() {
+		return alarmHistoryList;
+	}
+
+	public void setAlarmHistoryList(List<AlarmHistoryDto> alarmHistoryList) {
+		this.alarmHistoryList = alarmHistoryList;
+	}
+
+	public void attandenceList() throws Exception{
+		ClazzLectureRelation clazzLectureRelation = itemDao.findById(item.getId());
+		System.out.println("startDate="+item.getStartDate()+",endDate="+item.getEndDate());
+		alarmHistoryList = alarmHistoryDao.findAlarmHistory(clazzLectureRelation.getStartDate(),clazzLectureRelation.getEndDate(),clazzLectureRelation.getClazz().getName());
+		System.out.println("alarm list"+alarmHistoryList.size());
+		System.out.println("startDate2="+item.getStartDate()+",endDate2="+item.getEndDate());
 	}
 
 	public void create() throws Exception{
