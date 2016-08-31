@@ -15,7 +15,7 @@
 			<div class="well well-lg">
 			
 			<h:form id="form1">			
-				<p:fieldset legend="Class-Lecture  Management" toggleable="false" toggleSpeed="500">
+				<p:fieldset legend="Timetable  Management" toggleable="false" toggleSpeed="500">
 					<p:fieldset  style="margin-bottom:20px">
         <h:panelGrid columns="3" cellpadding="5">
             <h:outputLabel value="Date"> </h:outputLabel>
@@ -40,7 +40,30 @@
 				<p:commandButton value="Refresh" action="#{clazzLectureRelationMB.refreshList}" update="datatable"> </p:commandButton>
 				
 				
-					<p:dataTable id="datatable" var="item" value="#{clazzLectureRelationMB.itemList}">
+					<p:dataTable id="datatable" var="item" value="#{clazzLectureRelationMB.itemList}"
+					paginatorPosition="bottom" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+					>
+					<f:facet name="{Exporters}">
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/excel.png.xhtml" width="24"/>
+                <p:dataExporter type="xls" target="datatable" fileName="cars" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/pdf.png.xhtml" width="24"/>
+                <p:dataExporter type="pdf" target="datatable" fileName="cars"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/csv.png.xhtml" width="24"/>
+                <p:dataExporter type="csv" target="datatable" fileName="cars" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/xml.png.xhtml" width="24"/>
+                <p:dataExporter type="xml" target="datatable" fileName="cars" />
+            </h:commandLink>
+        </f:facet>
     <p:column headerText="Id">
         <h:outputText value="#{item.id}" />
     </p:column>
@@ -91,7 +114,31 @@
 
 	<p:outputPanel id="multiCarDetail2">
         
-        <p:dataTable var="alarm" id="datatable2" rows="5" paginator="true" value="#{clazzLectureRelationMB.alarmHistoryList}">
+        <p:dataTable var="alarm" id="datatable2" value="#{clazzLectureRelationMB.alarmHistoryList}"
+        paginatorPosition="bottom" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}">
+  
+  	<f:facet name="{Exporters}">
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/excel.png.xhtml" width="24"/>
+                <p:dataExporter type="xls" target="datatable2" fileName="cars" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/pdf.png.xhtml" width="24"/>
+                <p:dataExporter type="pdf" target="datatable2" fileName="cars"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/csv.png.xhtml" width="24"/>
+                <p:dataExporter type="csv" target="datatable2" fileName="cars" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/xml.png.xhtml" width="24"/>
+                <p:dataExporter type="xml" target="datatable2" fileName="cars" />
+            </h:commandLink>
+        </f:facet>
+  
     <p:column headerText="Id">
         <h:outputText value="#{alarm.alarmHistory.id}" />
     </p:column>

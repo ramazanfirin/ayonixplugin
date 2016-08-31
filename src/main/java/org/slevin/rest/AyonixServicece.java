@@ -38,6 +38,10 @@ public class AyonixServicece {
  
 		String output = "Jersey say : " + msg;
  
+		ServletContext  servletContext =(ServletContext) context;
+    	BeanFactory context = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+//		FaceMatcherPersonDao faceMatcherPersonService= (FaceMatcherPersonDao)context.getBean("faceMatcherPersonService");
+
 		
 		return Response.status(200).entity(output).build();
  

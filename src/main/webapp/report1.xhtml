@@ -15,7 +15,7 @@
 			<div class="well well-lg">
 			<h:form id="form1">
 					
-				<p:fieldset legend="Custom Alarm History" toggleable="false" toggleSpeed="500">
+				<p:fieldset legend="Attandance Report" toggleable="false" toggleSpeed="500">
 					<p:fieldset  style="margin-bottom:20px">
         <h:panelGrid columns="3" cellpadding="5">
             <h:outputLabel value="Date"> </h:outputLabel>
@@ -36,7 +36,31 @@
 					
 					
 					<center>
-					<p:dataTable var="alarm" id="datatable" value="#{report1MB.alarmHistoryList}">
+					<p:dataTable var="alarm" id="datatable" value="#{report1MB.alarmHistoryList}"
+					paginatorPosition="bottom" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}">
+   
+   <f:facet name="{Exporters}">
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/excel.png.xhtml" width="24"/>
+                <p:dataExporter type="xls" target="datatable" fileName="cars" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/pdf.png.xhtml" width="24"/>
+                <p:dataExporter type="pdf" target="datatable" fileName="cars"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/csv.png.xhtml" width="24"/>
+                <p:dataExporter type="csv" target="datatable" fileName="cars" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/xml.png.xhtml" width="24"/>
+                <p:dataExporter type="xml" target="datatable" fileName="cars" />
+            </h:commandLink>
+        </f:facet>
+   
     <p:column headerText="Id">
         <h:outputText value="#{alarm.alarmHistory.id}" />
     </p:column>

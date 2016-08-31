@@ -23,7 +23,31 @@
 				<p:commandButton value="Refresh" action="#{lectureMB.refreshList}" update="datatable"> </p:commandButton>
 				
 				
-					<p:dataTable id="datatable" var="item" value="#{lectureMB.itemList}">
+					<p:dataTable id="datatable" var="item" value="#{lectureMB.itemList}" paginator="true" paginatorPosition="bottom"
+					 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}">
+   <f:facet name="{Exporters}">
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/excel.png.xhtml" width="24"/>
+                <p:dataExporter type="xls" target="datatable" fileName="cars" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/pdf.png.xhtml" width="24"/>
+                <p:dataExporter type="pdf" target="datatable" fileName="cars"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/csv.png.xhtml" width="24"/>
+                <p:dataExporter type="csv" target="datatable" fileName="cars" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/xml.png.xhtml" width="24"/>
+                <p:dataExporter type="xml" target="datatable" fileName="cars" />
+            </h:commandLink>
+        </f:facet>
+   
+   
     <p:column headerText="Id">
         <h:outputText value="#{item.id}" />
     </p:column>
