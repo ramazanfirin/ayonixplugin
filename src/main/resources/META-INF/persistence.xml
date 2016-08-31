@@ -17,6 +17,7 @@
 		<class>org.slevin.common.Lecture</class>
 		<class>org.slevin.common.Teacher</class>
 		<class>org.slevin.common.ClazzLectureRelation</class>
+		<class>org.slevin.common.Notification</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 	</persistence-unit>

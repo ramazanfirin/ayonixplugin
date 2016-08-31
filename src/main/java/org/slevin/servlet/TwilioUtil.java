@@ -13,15 +13,20 @@ public class TwilioUtil {
 		  public static final String AUTH_TOKEN = "80841bde7702dd3022658653b99c7ccf";
 
 		  public static void main(String[] args) {
-		    Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-
-		    Message message = new MessageCreator(ACCOUNT_SID,
-		      new PhoneNumber("+905345482946"), // TO number
-		      new PhoneNumber("+12569297050"), // From Twilio number
-		      "Hello from Java"
-		    ).execute();
-
-		    System.out.println(message.getSid());
+		    sendSms("+905345482946", "deneme");
 		  }
 	
+		  public static String sendSms(String phoneNumber,String messageText){
+			  Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+
+			    Message message = new MessageCreator(ACCOUNT_SID,
+			      new PhoneNumber(phoneNumber), // TO number
+			      new PhoneNumber("+12569297050"), // From Twilio number
+			      messageText
+			    ).execute();
+
+			    
+			    System.out.println(message.getSid());
+			    return message.getSid();
+		  }
 }
