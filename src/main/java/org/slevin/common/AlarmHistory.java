@@ -1,5 +1,6 @@
 package org.slevin.common;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,9 +16,14 @@ import org.hibernate.annotations.Immutable;
 @Entity
 @Table(name="AlarmHistory")
 
-public class AlarmHistory {
+public class AlarmHistory implements Serializable{     
 
 	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1996121104904340781L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

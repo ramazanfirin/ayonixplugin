@@ -9,8 +9,11 @@ public class TwilioUtil {
 
 	
 	
-		public static final String ACCOUNT_SID = "ACf93a18291e93bfcdbbd744e44668cccc";
+		public static final String ACCOUNT_SID = "ACf93a18291e93bfcdbbd744e44668cccc";//prod
 		  public static final String AUTH_TOKEN = "80841bde7702dd3022658653b99c7ccf";
+		  
+//		  public static final String ACCOUNT_SID = "AC881f698acbedfab2a3eb5da6963788fa";//test
+//		  public static final String AUTH_TOKEN = "0caa88fa70ae51eb061dab536f0689a2";
 
 		  public static void main(String[] args) {
 		    sendSms("+905345482946", "deneme");
@@ -22,6 +25,7 @@ public class TwilioUtil {
 			    Message message = new MessageCreator(ACCOUNT_SID,
 			      new PhoneNumber(phoneNumber), // TO number
 			      new PhoneNumber("+12569297050"), // From Twilio number
+//			      new PhoneNumber("+15005550006"),//test
 			      messageText
 			    ).execute();
 

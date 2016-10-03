@@ -30,7 +30,7 @@ public class CategoryMB implements Serializable {
 	@Autowired
 	private CategoryDao categoryDao;
 	
-
+	
 	private List<Category> categoryList;
 	
 	@PostConstruct

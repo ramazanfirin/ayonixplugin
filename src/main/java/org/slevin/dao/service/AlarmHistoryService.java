@@ -81,6 +81,26 @@ public class AlarmHistoryService extends EntityService<AlarmHistory> implements 
 			dto.setClazzLectureRelation(clazzLectureRelation);
 			
 			returnList.add(dto);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		}
 		
 		return returnList;
