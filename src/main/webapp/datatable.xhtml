@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+							<p:dataTable var="alarm" id="alarmdatatable" value="#{bean.alarmList}" rows="10"
+					paginatorPosition="bottom" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}">
+   
+   <f:facet name="{Exporters}">
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/excel.png.xhtml" width="24"/>
+                <p:dataExporter type="xls" target="datatable" fileName="cars" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/pdf.png.xhtml" width="24"/>
+                <p:dataExporter type="pdf" target="datatable" fileName="cars"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/csv.png.xhtml" width="24"/>
+                <p:dataExporter type="csv" target="datatable" fileName="cars" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/xml.png.xhtml" width="24"/>
+                <p:dataExporter type="xml" target="datatable" fileName="cars" />
+            </h:commandLink>
+        </f:facet>
+   
+    <p:column headerText="Id">
+        <h:outputText value="#{alarm.id}" />
+    </p:column>
+ 
+ <p:column headerText="Image">
+        <p:graphicImage   url="http://localhost:8080/smartSchool/#{alarm.alarmImage}" height="50">
+		</p:graphicImage>
+    </p:column>
+ 
+    <p:column headerText="Name">
+        <h:outputText value="#{alarm.person.name}  #{alarm.person.surname} " escape="false" />
+    </p:column>
+ 
+    <p:column headerText="Date">
+        <h:outputText value="#{alarm.insertDate}" />
+    </p:column>
+    
+    <p:column headerText="Classroom">
+        <h:outputText value="#{alarm.ipCamera.clazz.name}" />
+    </p:column>
+    
+    <p:column headerText="Camera Name">
+        <h:outputText value="#{alarm.ipCamera.name}" />
+    </p:column>
+    
+     <p:column headerText="Lecture">
+        <h:outputText value="#{alarm.lecture}" />
+    </p:column>
+    
+    <p:column headerText="Teacher">
+        <h:outputText value="#{alarm.teacher}" />
+    </p:column>
+    
+    <p:column headerText="Score">
+        <h:outputText value="#{alarm.score}" />
+    </p:column>
+    
+    <p:column headerText="Category">
+        <h:outputText value="#{alarm.person.personCategory.name}" />
+    </p:column>
+</p:dataTable>
+
+	</ui:composition>

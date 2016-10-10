@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+
+	<ui:composition template="/WEB-INF/tags/layout.xhtml">
+		<ui:define name="content">
+
+
+			<div class="well well-lg">
+			<h:form id="form1">
+			
+					
+				<p:fieldset legend="Alarm Page" toggleable="false" toggleSpeed="500">
+					<p:fieldset  style="margin-bottom:20px">
+        <h:panelGrid columns="3" cellpadding="5">
+            <h:outputLabel value="Date"> </h:outputLabel>
+            <h:outputLabel value=":"> </h:outputLabel>
+            <p:calendar value="#{alarmHistoryMB.searchDate}"></p:calendar>
+            
+    <h:outputLabel value="Class" ></h:outputLabel>
+            	<h:outputLabel value=":" ></h:outputLabel>
+            	<p:selectOneMenu  id="car27" value="#{alarmHistoryMB.searchClass}">
+                	<f:selectItems value="#{clazzLectureRelationMB.clazzList}" var="item" itemLabel="#{item.name}" itemValue="#{item.name}" />
+        		</p:selectOneMenu>
+        		
+            </h:panelGrid>
+            <p:commandButton value="Search" action="#{alarmHistoryMB.search}" update=":form1:datatable"></p:commandButton>
+    </p:fieldset>
+					
+					
+					
+					<center>
+					<p:dataTable id="datatable" var="alarm" value="#{alarmHistoryMB.alarmHistoryList}">
+    <p:column headerText="Id">
+        <h:outputText value="#{alarm.id}" />
+    </p:column>
+ 
+    <p:column headerText="userId">
+        <h:outputText value="#{alarm.userId}" />
+    </p:column>
+ 
+    <p:column headerText="Type">
+        <h:outputText value="#{alarm.type}" />
+    </p:column>
+ 
+    <p:column headerText="Date">
+        <h:outputText value="#{alarm.date}" />
+    </p:column>
+    
+    <p:column headerText="Command">
+        <h:outputText value="#{alarm.command}" />
+    </p:column>
+    
+    <p:column headerText="Email">
+        <h:outputText value="#{alarm.email}" />
+    </p:column>
+    
+    <p:column headerText="CameraId">
+        <h:outputText value="#{alarm.cameraId}" />
+    </p:column>
+    
+    <p:column headerText="Score">
+        <h:outputText value="#{alarm.score}" />
+    </p:column>
+    
+    <p:column headerText="Gender">
+        <h:outputText value="#{alarm.gender}" />
+    </p:column>
+    
+    <p:column headerText="Age">
+        <h:outputText value="#{alarm.age}" />
+    </p:column>
+</p:dataTable>
+					</center>	
+				</p:fieldset>
+				</h:form>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+
+
+
+</h:body>
+</html>
