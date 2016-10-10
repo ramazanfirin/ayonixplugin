@@ -3,9 +3,9 @@ package org.slevin.dao;
 import java.util.Date;
 import java.util.List;
 
-import org.slevin.common.AlarmHistory;
-import org.slevin.common.Clazz;
-import org.slevin.common.ClazzLectureRelation;
+import org.slevin.common.v2.AlarmHistory;
+import org.slevin.common.v2.Clazz;
+import org.slevin.common.v2.ClazzLectureRelation;
 import org.slevin.dto.AlarmHistoryDto;
 
 

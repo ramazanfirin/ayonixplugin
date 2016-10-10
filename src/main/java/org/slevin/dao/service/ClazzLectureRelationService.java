@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.persistence.TemporalType;
 
-import org.slevin.common.ClazzLectureRelation;
+import org.slevin.common.v2.ClazzLectureRelation;
 import org.slevin.dao.ClazzLectureRelationDao;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -74,6 +74,51 @@ public class ClazzLectureRelationService extends EntityService<ClazzLectureRelat
 				.getResultList();
 	
 		return list;
+	}
+
+
+	@Override
+	public ClazzLectureRelation findNearest(Date date, Long classId) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.set(Calendar.HOUR, 0);
+		c.set(Calendar.MINUTE, 0);
+		c.set(Calendar.SECOND, 0);
+		
+		Date startDate = c.getTime();
+		c.set(Calendar.HOUR, 23);
+		c.set(Calendar.MINUTE, 59);
+		c.set(Calendar.SECOND, 59);
+		Date endDate = c.getTime();
+		
+		
+		List<ClazzLectureRelation> list=  getEntityManager().createQuery("Select t from ClazzLectureRelation t where t.startDate<= :date AND t.endDate>= :date and t.clazz.id=:id")
+		.setParameter("date",date)
+//		.setParameter("date2",endDate)
+		.setParameter("id",classId)
+		.getResultList();
+		
+		ClazzLectureRelation temp = null;
+		if(list.size()>0)
+			return list.get(0);
+		else 
+			return null;
+//		
+//		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+//			ClazzLectureRelation clazzLectureRelation = (ClazzLectureRelation) iterator.next();
+//			if(clazzLectureRelation.getStartDate().getTime() < date.getTime()){
+//				if(temp==null)
+//					temp = clazzLectureRelation;
+//				else{
+//					if(temp.getStartDate().getTime()<clazzLectureRelation.getStartDate().getTime()){
+//						temp = clazzLectureRelation;
+//					}
+//				}
+//			}
+//		}
+		
+		
+//		  return temp;
 	}
 
 	

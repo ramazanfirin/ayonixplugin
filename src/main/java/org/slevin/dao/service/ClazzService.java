@@ -1,7 +1,7 @@
 package org.slevin.dao.service;
 
 
-import org.slevin.common.Clazz;
+import org.slevin.common.v2.Clazz;
 import org.slevin.dao.ClazzDao;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

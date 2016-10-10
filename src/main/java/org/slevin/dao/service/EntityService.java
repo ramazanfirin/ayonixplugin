@@ -32,9 +32,12 @@ public class EntityService<E>  implements EntityDao<E> {
 	public void merge(E e) throws HibernateException{     
 	    getEntityManager().merge(e);
 	}
-	@Transactional
+	//@Transactional
 	public void remove(Object id) throws Exception{     
-	    getEntityManager().remove((E)getEntityManager().find(getEntityClass(), id));
+//		E e =(E)getEntityManager().find(getEntityClass(), id);
+//		getEntityManager().remove(getEntityManager().merge(id));
+	   getEntityManager().remove((E)getEntityManager().find(getEntityClass(), id));
+	    //getEntityManager().remove(id);
 	}
 	
 	

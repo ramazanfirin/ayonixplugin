@@ -1,4 +1,4 @@
-package org.slevin.common;
+package org.slevin.common.v2;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +9,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import org.slevin.common.Order;
+import org.slevin.common.v2.Order;
 
 @Entity
 @Table(name="ITEM")

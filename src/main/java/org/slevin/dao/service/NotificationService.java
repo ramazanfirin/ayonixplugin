@@ -7,9 +7,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import org.slevin.common.AlarmHistory;
-import org.slevin.common.FaceAlarmParameters;
-import org.slevin.common.Notification;
+import org.slevin.common.v2.AlarmHistory;
+import org.slevin.common.v2.FaceAlarmParameters;
+import org.slevin.common.v2.Notification;
 import org.slevin.dao.NotificationDao;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

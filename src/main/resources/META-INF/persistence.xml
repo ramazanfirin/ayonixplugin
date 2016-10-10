@@ -6,18 +6,22 @@
 
 	<persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
 
-        <class>org.slevin.common.AlarmHistory</class>
-        <class>org.slevin.common.Category</class>
-        <class>org.slevin.common.Clazz</class>
-        <class>org.slevin.common.ClazzLectureRelation</class>
-        <class>org.slevin.common.EnrollPerson</class>
-        <class>org.slevin.common.FaceAlarmParameters</class>
-        <class>org.slevin.common.IpCamera</class>
-        <class>org.slevin.common.Item</class>
-        <class>org.slevin.common.Lecture</class>
-        <class>org.slevin.common.Notification</class>
-        <class>org.slevin.common.Order</class>
-		<class>org.slevin.common.Teacher</class>
+        <class>org.slevin.common.v2.AlarmHistory</class>
+        <class>org.slevin.common.v2.Category</class>
+        <class>org.slevin.common.v2.Clazz</class>
+        <class>org.slevin.common.v2.ClazzLectureRelation</class>
+        <class>org.slevin.common.v2.EnrollPerson</class>
+        <class>org.slevin.common.v2.FaceAlarmParameters</class>
+        <class>org.slevin.common.v2.IpCamera</class>
+        <class>org.slevin.common.v2.Item</class>
+        <class>org.slevin.common.v2.Lecture</class>
+        <class>org.slevin.common.v2.Notification</class>
+        <class>org.slevin.common.v2.Order</class>
+		<class>org.slevin.common.v2.Teacher</class>
+		<class>org.slevin.common.v2.Person</class>
+		<class>org.slevin.common.v2.Afid</class>
+		<class>org.slevin.common.v2.Alarm</class>
+		<class>org.slevin.common.v2.PersonCategory</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 	</persistence-unit>

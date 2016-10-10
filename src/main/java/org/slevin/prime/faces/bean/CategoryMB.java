@@ -7,8 +7,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 
-import org.slevin.common.Category;
-import org.slevin.common.IpCamera;
+import org.slevin.common.v2.Category;
+import org.slevin.common.v2.IpCamera;
 import org.slevin.dao.CategoryDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

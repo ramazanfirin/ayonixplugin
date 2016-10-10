@@ -2,6 +2,8 @@ package org.slevin.dao;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 
 public interface EntityDao<E> {
 	
@@ -9,6 +11,7 @@ public interface EntityDao<E> {
 	
 	void merge(E e) throws Exception;
 
+	@Transactional
 	void remove(Object id) throws Exception;
 	
 	E findById(Object id) throws Exception;

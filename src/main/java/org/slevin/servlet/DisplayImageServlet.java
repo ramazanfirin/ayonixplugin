@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slevin.common.FaceAlarmParameters;
+import org.slevin.common.v2.FaceAlarmParameters;
 import org.slevin.dao.FaceAlarmParametersDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.WebApplicationContext;

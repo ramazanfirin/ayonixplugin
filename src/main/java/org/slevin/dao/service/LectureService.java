@@ -1,7 +1,7 @@
 package org.slevin.dao.service;
 
 
-import org.slevin.common.Lecture;
+import org.slevin.common.v2.Lecture;
 import org.slevin.dao.LectureDao;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

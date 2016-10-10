@@ -1,4 +1,4 @@
-package org.slevin.common;
+package org.slevin.common.v2;
 
 import java.util.Date;
 

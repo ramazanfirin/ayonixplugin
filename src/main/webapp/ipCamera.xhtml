@@ -15,18 +15,161 @@
 			<div class="well well-lg">
 			
 					
-				<p:fieldset legend="İp Camera" toggleable="false" toggleSpeed="500">
+				<p:fieldset legend="Camera Management" toggleable="false" toggleSpeed="500">
 					<center>
-					<p:dataTable var="alarm" value="#{ipCameraMB.ipCameraList}">
+				<h:form id="form1">
+				 <p:poll interval="3" autoStart="false" listener="#{ipCameraMB.refreshList}" update=":form1:datatable" />
+				<p:messages id="messages"  autoUpdate="true" closable="true" />
+				<p:commandButton value="Create New" update=":form1:multiCarDetail" action="#{ipCameraMB.create}" oncomplete="PF('multiCarDialog').show()"> </p:commandButton>
+				<p:commandButton value="Refresh" action="#{ipCameraMB.refreshList}" update="datatable"> </p:commandButton>
+				
+				
+					<p:dataTable id="datatable" var="item" value="#{ipCameraMB.itemList}" paginator="true" paginatorPosition="bottom"
+					 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}">
+   <f:facet name="{Exporters}">
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/excel.png.xhtml" width="24"/>
+                <p:dataExporter type="xls" target="datatable" fileName="cars" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/pdf.png.xhtml" width="24"/>
+                <p:dataExporter type="pdf" target="datatable" fileName="cars"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/csv.png.xhtml" width="24"/>
+                <p:dataExporter type="csv" target="datatable" fileName="cars" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/xml.png.xhtml" width="24"/>
+                <p:dataExporter type="xml" target="datatable" fileName="cars" />
+            </h:commandLink>
+        </f:facet>
+   
+   
     <p:column headerText="Id">
-        <h:outputText value="#{alarm.id}" />
+        <h:outputText value="#{item.id}" />
     </p:column>
  
-    <p:column headerText="name">
-        <h:outputText value="#{alarm.name}" />
+   <p:column headerText="Name">
+        <h:outputText value="#{item.name}" escape="false" />
+    </p:column>
+    
+     <p:column headerText="ip">
+        <h:outputText value="#{item.ip}" escape="false" />
     </p:column>
  
+ 	 <p:column headerText="port">
+        <h:outputText value="#{item.port}" escape="false" />
+    </p:column>
+    
+     <p:column headerText="username">
+        <h:outputText value="#{item.username}" escape="false" />
+    </p:column>
+    
+    <p:column headerText="password">
+        <h:outputText value="#{item.password}" escape="false" />
+    </p:column>
+    
+    <p:column headerText="type">
+        <h:outputText value="#{item.type}" escape="false" />
+    </p:column>
+    
+    <p:column headerText="connectionURL">
+        <h:outputText value="#{item.connectionURL}" escape="false" />
+    </p:column>
+    
+    <p:column headerText="Status">
+        <h:outputText value="#{item.status}" escape="false" />
+    </p:column>
+    
+    <p:column headerText="ClassRoom Name">
+        <h:outputText value="#{item.clazz.name}" escape="false" />
+    </p:column>
+    
+    <p:column headerText="Start">
+         <p:commandButton action="#{ipCameraMB.startCamera}"  icon="ui-icon-search" update=":form1" title="Update">
+                <f:setPropertyActionListener value="#{item}" target="#{ipCameraMB.item}" />
+            </p:commandButton>
+    </p:column>
+    
+    <p:column headerText="Stop">
+       <p:commandButton action="#{ipCameraMB.stopCamera}"  icon="ui-icon-search" update=":form1" title="Update">
+                <f:setPropertyActionListener value="#{item}" target="#{ipCameraMB.item}" />
+            </p:commandButton>
+    </p:column>
+    
+    <p:column headerText="Live">
+        <h:outputText value="" escape="false" />
+    </p:column>
+    
+   <p:column headerText="Güncelle">
+             <p:commandButton  oncomplete="PF('multiCarDialog').show()" icon="ui-icon-search" update=":form1:multiCarDetail" title="Update">
+                <f:setPropertyActionListener value="#{item}" target="#{ipCameraMB.item}" />
+            </p:commandButton>
+        </p:column>
+        
+   <p:column headerText="Sil">
+             <p:commandButton update="datatable,:form1:messages" action="#{ipCameraMB.delete}" icon="ui-icon-search" title="Delete">
+                <f:setPropertyActionListener value="#{item}" target="#{ipCameraMB.item}" />
+            </p:commandButton>
+        </p:column>     
 </p:dataTable>
+
+
+<p:dialog header="Selected Teacher" id="modal" widgetVar="multiCarDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
+        <p:outputPanel id="multiCarDetail" style="text-align:center;">
+            <h:panelGrid columns="3">
+	            <h:outputLabel value="Name" ></h:outputLabel>
+	            <h:outputLabel value=":" ></h:outputLabel>
+	            <h:inputText value="#{ipCameraMB.item.name}"></h:inputText>
+            
+            	<h:outputLabel value="İp" ></h:outputLabel>
+	            <h:outputLabel value=":" ></h:outputLabel>
+	            <h:inputText value="#{ipCameraMB.item.ip}"></h:inputText>
+	            
+	            <h:outputLabel value="Port(Empyt means auto)" ></h:outputLabel>
+	            <h:outputLabel value=":" ></h:outputLabel>
+	            <h:inputText value="#{ipCameraMB.item.port}"></h:inputText>
+	            
+	            <h:outputLabel value="Username" ></h:outputLabel>
+	            <h:outputLabel value=":" ></h:outputLabel>
+	            <h:inputText value="#{ipCameraMB.item.username}"></h:inputText>
+	            
+	            <h:outputLabel value="Password" ></h:outputLabel>
+	            <h:outputLabel value=":" ></h:outputLabel>
+	            <h:inputText value="#{ipCameraMB.item.password}"></h:inputText>
+	            
+	            <h:outputLabel value="Type" ></h:outputLabel>
+	            <h:outputLabel value=":" ></h:outputLabel>
+	            <h:selectOneMenu value="#{ipCameraMB.item.type}">
+				   	<f:selectItem itemValue="USB" itemLabel="USB" />
+				   	<f:selectItem itemValue="MJPEG" itemLabel="MJPEG" />
+				   	<f:selectItem itemValue="RTSP" itemLabel="RTSP" />
+				</h:selectOneMenu>
+
+	            
+	             <h:outputLabel value="ConnectionUrl" ></h:outputLabel>
+	            <h:outputLabel value=":" ></h:outputLabel>
+	            <h:inputText value="#{ipCameraMB.item.connectionURL}"></h:inputText>
+	            
+	            <h:outputLabel value="ClassRoom" ></h:outputLabel>
+	            <h:outputLabel value=":" ></h:outputLabel>
+	            <h:selectOneMenu value="#{ipCameraMB.item.clazz.id}">
+				   	<f:selectItems value="#{ipCameraMB.clazzList}" var="clazz" itemLabel="#{clazz.name}" itemValue="#{clazz.id}"/>		
+				 </h:selectOneMenu>
+	            
+            </h:panelGrid>
+            <p:commandButton value="Kaydet" action="#{ipCameraMB.merge}" update="datatable,:form1:messages" oncomplete="PF('multiCarDialog').hide()" ></p:commandButton>
+        </p:outputPanel>
+    </p:dialog>
+
+
+
+					</h:form>
+					
 					</center>	
 				</p:fieldset>
 			</div>

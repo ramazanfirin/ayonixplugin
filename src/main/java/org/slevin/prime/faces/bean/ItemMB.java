@@ -14,7 +14,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.RowEditEvent;
-import org.slevin.common.Item;
+import org.slevin.common.v2.Item;
 import org.slevin.dao.ItemsDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

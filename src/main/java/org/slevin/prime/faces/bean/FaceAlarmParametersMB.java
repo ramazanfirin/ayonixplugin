@@ -13,7 +13,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
-import org.slevin.common.FaceAlarmParameters;
+import org.slevin.common.v2.FaceAlarmParameters;
 import org.slevin.dao.FaceAlarmParametersDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

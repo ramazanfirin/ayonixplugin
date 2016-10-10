@@ -1,4 +1,4 @@
-package org.slevin.common;
+package org.slevin.common.v2;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Immutable;
 
-@Immutable
+
 @Entity
 @Table(name="EnrollPerson")
 

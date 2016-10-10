@@ -1,8 +1,8 @@
 package org.slevin.dao.service;
 
 
-import org.slevin.common.AlarmHistory;
-import org.slevin.common.EnrollPerson;
+import org.slevin.common.v2.AlarmHistory;
+import org.slevin.common.v2.EnrollPerson;
 import org.slevin.dao.AlarmHistoryDao;
 import org.slevin.dao.EnrollPersonDao;
 import org.springframework.stereotype.Component;

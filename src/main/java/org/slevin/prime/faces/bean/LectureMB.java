@@ -7,8 +7,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 
-import org.slevin.common.Lecture;
-import org.slevin.common.Teacher;
+import org.slevin.common.v2.Lecture;
+import org.slevin.common.v2.Teacher;
 import org.slevin.dao.LectureDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

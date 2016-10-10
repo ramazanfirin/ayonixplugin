@@ -9,10 +9,12 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 
-import org.slevin.common.Clazz;
-import org.slevin.dao.AlarmHistoryDao;
+import org.slevin.common.v2.Alarm;
+import org.slevin.common.v2.Clazz;
+import org.slevin.common.v2.ClazzLectureRelation;
+import org.slevin.dao.AlarmDao;
 import org.slevin.dao.ClazzDao;
-import org.slevin.dto.AlarmHistoryDto;
+import org.slevin.dao.ClazzLectureRelationDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -33,26 +35,38 @@ public class ClazzMB extends BaseMB implements Serializable {
 	@Autowired
 	private ClazzDao itemDao;
 	
+	@Autowired
+	private ClazzLectureRelationDao clazzLectureRelationDao;
+	
 
 	private List<Clazz> itemList;
 	private Clazz item = new Clazz();
 	
-	private List<AlarmHistoryDto> alarmHistoryList;
+	private List<Alarm> alarmList;
 	@Autowired
-	private AlarmHistoryDao alarmHistoryDao;
+	private AlarmDao alarmDao;
 	
-	public List<AlarmHistoryDto> getAlarmHistoryList() {
-		return alarmHistoryList;
+	public List<Alarm> getAlarmList() {
+		return alarmList;
 	}
 
-	public void setAlarmHistoryList(List<AlarmHistoryDto> alarmHistoryList) {
-		this.alarmHistoryList = alarmHistoryList;
+	public void setAlarmHList(List<Alarm> alarmList) {
+		this.alarmList = alarmList;
 	}
 
 	@PostConstruct
     public void init() throws Exception {
 		refreshList();
     }
+	
+	public void currentSnapshot() throws Exception{
+		ClazzLectureRelation clazzLectureRelation = clazzLectureRelationDao.findNearest(new Date(),item.getId());
+		if(clazzLectureRelation==null)
+			alarmList.clear();
+		else
+			alarmList = alarmDao.findAlarmHistory(clazzLectureRelation.getStartDate(),clazzLectureRelation.getEndDate(),item.getId());
+	}
+
 	
 	public void attandenceList() throws Exception{
 		Clazz clazz = itemDao.findById(item.getId());
@@ -69,7 +83,7 @@ public class ClazzMB extends BaseMB implements Serializable {
 	
 	Date endDate = c.getTime();
 	
-		alarmHistoryList = alarmHistoryDao.findAlarmHistory(startDate,endDate,clazz.getName());
+		alarmList = alarmDao.findAlarmHistory(startDate,endDate,clazz.getId());
 		
 	}
 

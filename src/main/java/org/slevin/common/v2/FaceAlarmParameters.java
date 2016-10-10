@@ -1,4 +1,4 @@
-package org.slevin.common;
+package org.slevin.common.v2;
 
 import java.io.ByteArrayInputStream;
 import java.util.Date;
@@ -16,7 +16,7 @@ import org.hibernate.annotations.Immutable;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
-@Immutable
+
 @Entity
 @Table(name="FaceAlarmParameters")
 

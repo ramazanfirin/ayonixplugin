@@ -10,12 +10,12 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import org.slevin.common.AlarmHistory;
-import org.slevin.common.Category;
-import org.slevin.common.ClazzLectureRelation;
-import org.slevin.common.EnrollPerson;
-import org.slevin.common.FaceAlarmParameters;
-import org.slevin.common.IpCamera;
+import org.slevin.common.v2.AlarmHistory;
+import org.slevin.common.v2.Category;
+import org.slevin.common.v2.ClazzLectureRelation;
+import org.slevin.common.v2.EnrollPerson;
+import org.slevin.common.v2.FaceAlarmParameters;
+import org.slevin.common.v2.IpCamera;
 import org.slevin.dao.AlarmHistoryDao;
 import org.slevin.dao.CategoryDao;
 import org.slevin.dao.ClazzLectureRelationDao;

@@ -9,8 +9,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 
-import org.slevin.common.AlarmHistory;
-import org.slevin.dao.AlarmHistoryDao;
+import org.slevin.common.v2.Alarm;
+import org.slevin.dao.AlarmDao;
 import org.slevin.dto.AlarmHistoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,14 +30,14 @@ public class Report1MB implements Serializable {
 
 
 	@Autowired
-	private AlarmHistoryDao alarmHistoryDao;
+	private AlarmDao alarmDao;
 	
 
-	private List<AlarmHistoryDto> alarmHistoryList;
+	private List<Alarm> alarmList;
 	
 private Date searchDate;
 	
-	private String searchClass;
+	private Long searchClassId;
 	
 	@PostConstruct
     public void init() throws Exception {
@@ -56,22 +56,13 @@ private Date searchDate;
 		c.set(Calendar.MINUTE, 59);
 		c.set(Calendar.SECOND, 59);
 		Date endDate = c.getTime();
-		alarmHistoryList = alarmHistoryDao.findAlarmHistory(searchDate,endDate,searchClass);
-		System.out.println("alarm size="+alarmHistoryList.size());
+		alarmList = alarmDao.findAlarmHistory(searchDate,endDate,searchClassId);
+		System.out.println("alarm size="+alarmList.size());
 		
 	}
 
 
 
-	public List<AlarmHistoryDto> getAlarmHistoryList() {
-		return alarmHistoryList;
-	}
-
-
-
-	public void setAlarmHistoryList(List<AlarmHistoryDto> alarmHistoryList) {
-		this.alarmHistoryList = alarmHistoryList;
-	}
 
 	public Date getSearchDate() {
 		return searchDate;
@@ -81,15 +72,23 @@ private Date searchDate;
 		this.searchDate = searchDate;
 	}
 
-	public String getSearchClass() {
-		return searchClass;
+	public List<Alarm> getAlarmList() {
+		return alarmList;
 	}
 
-	public void setSearchClass(String searchClass) {
-		this.searchClass = searchClass;
+	public void setAlarmList(List<Alarm> alarmList) {
+		this.alarmList = alarmList;
 	}
 
+	public Long getSearchClassId() {
+		return searchClassId;
+	}
 
+	public void setSearchClassId(Long searchClassId) {
+		this.searchClassId = searchClassId;
+	}
+
+	
 	
 	
 	

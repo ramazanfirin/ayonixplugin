@@ -1,4 +1,4 @@
-package org.slevin.common;
+package org.slevin.common.v2;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,11 +9,11 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Immutable;
 
-@Immutable
-@Entity
-@Table(name="IpCamera")
 
-public class IpCamera {
+@Entity
+@Table(name="Teacher")
+
+public class Teacher {
 
 	
 
@@ -24,9 +24,6 @@ public class IpCamera {
 
 	@Column(name = "NAME")
 	private String name;
-	
-	@Column(name = "CAMERAALIAS")
-	private String alias;
 
 	public Long getId() {
 		return id;
@@ -43,15 +40,6 @@ public class IpCamera {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public String getAlias() {
-		return alias;
-	}
-
-	public void setAlias(String alias) {
-		this.alias = alias;
-	}
-	
 	
 	
 	

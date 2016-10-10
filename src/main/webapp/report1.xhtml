@@ -24,88 +24,20 @@
             
     <h:outputLabel value="Class" ></h:outputLabel>
             	<h:outputLabel value=":" ></h:outputLabel>
-            	<p:selectOneMenu  id="car27" value="#{report1MB.searchClass}">
-                	<f:selectItems value="#{clazzLectureRelationMB.clazzList}" var="item" itemLabel="#{item.name}" itemValue="#{item.name}" />
+            	<p:selectOneMenu  id="car27" value="#{report1MB.searchClassId}">
+                	<f:selectItems value="#{clazzLectureRelationMB.clazzList}" var="item" itemLabel="#{item.name}" itemValue="#{item.id}" />
         		</p:selectOneMenu>
         		
             </h:panelGrid>
-            <p:commandButton value="Search" action="#{report1MB.search}" update=":form1:datatable"></p:commandButton>
+            <p:commandButton value="Search" action="#{report1MB.search}" update=":form1:alarmdatatable"></p:commandButton>
+            
     </p:fieldset>
-					
-					
-					
-					
 					<center>
-					<p:dataTable var="alarm" id="datatable" value="#{report1MB.alarmHistoryList}"
-					paginatorPosition="bottom" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}">
-   
-   <f:facet name="{Exporters}">
-            <h:commandLink>
-                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/excel.png.xhtml" width="24"/>
-                <p:dataExporter type="xls" target="datatable" fileName="cars" />
-            </h:commandLink>
- 
-            <h:commandLink>
-                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/pdf.png.xhtml" width="24"/>
-                <p:dataExporter type="pdf" target="datatable" fileName="cars"/>
-            </h:commandLink>
- 
-            <h:commandLink>
-                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/csv.png.xhtml" width="24"/>
-                <p:dataExporter type="csv" target="datatable" fileName="cars" />
-            </h:commandLink>
- 
-            <h:commandLink>
-                <p:graphicImage url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/xml.png.xhtml" width="24"/>
-                <p:dataExporter type="xml" target="datatable" fileName="cars" />
-            </h:commandLink>
-        </f:facet>
-   
-    <p:column headerText="Id">
-        <h:outputText value="#{alarm.alarmHistory.id}" />
-    </p:column>
- 
- <p:column headerText="Image">
-        <p:graphicImage   url="http://localhost:8080/primefaces-spring-jpa-tutorial/images?id=#{alarm.faceAlarmParameters.id}" height="50">
-		</p:graphicImage>
-    </p:column>
- 
-    <p:column headerText="Name">
-        <h:outputText value="#{alarm.enrollPerson.name}  #{alarm.enrollPerson.surname} " escape="false" />
-    </p:column>
- 
-    <p:column headerText="Date">
-        <h:outputText value="#{alarm.alarmHistory.date}" />
-    </p:column>
-    
-    <p:column headerText="Location">
-        <h:outputText value="#{alarm.ipCamera.name}" />
-    </p:column>
-    
-     <p:column headerText="Lecture">
-        <h:outputText value="#{alarm.clazzLectureRelation.lecture.name}" />
-    </p:column>
-    
-    <p:column headerText="Teacher">
-        <h:outputText value="#{alarm.clazzLectureRelation.teacher.name}" />
-    </p:column>
-    
-    <p:column headerText="Score">
-        <h:outputText value="#{alarm.alarmHistory.score}" />
-    </p:column>
-    
-    <p:column headerText="Gender">
-        <h:outputText value="#{alarm.alarmHistory.gender}" />
-    </p:column>
-    
-    <p:column headerText="Age">
-        <h:outputText value="#{alarm.alarmHistory.age}" />
-    </p:column>
-    
-     <p:column headerText="Category">
-        <h:outputText value="#{alarm.category.name}" />
-    </p:column>
-</p:dataTable>
+						<ui:insert name="datatable2">
+							<ui:include src="datatable.xhtml" >
+								<ui:param name="bean" value="#{report1MB}" />
+							</ui:include>
+						</ui:insert>
 					</center>	
 				</p:fieldset>
 				</h:form>

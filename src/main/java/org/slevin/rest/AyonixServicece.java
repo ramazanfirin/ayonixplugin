@@ -12,7 +12,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
-import org.slevin.common.Notification;
+import org.slevin.common.v2.Notification;
 import org.slevin.dao.AlarmHistoryDao;
 import org.slevin.dao.NotificationDao;
 import org.slevin.dto.AlarmHistoryDto;

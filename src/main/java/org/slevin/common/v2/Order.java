@@ -1,4 +1,4 @@
-package org.slevin.common;
+package org.slevin.common.v2;
 
 import java.util.Collection;
 import java.util.Date;
@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.slevin.common.Item;
+import org.slevin.common.v2.Item;
 
 @Entity
 @Table(name="ORDERS")

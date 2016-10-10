@@ -9,11 +9,12 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 
-import org.slevin.common.Clazz;
-import org.slevin.common.ClazzLectureRelation;
-import org.slevin.common.Lecture;
-import org.slevin.common.Teacher;
-import org.slevin.dao.AlarmHistoryDao;
+import org.slevin.common.v2.Alarm;
+import org.slevin.common.v2.Clazz;
+import org.slevin.common.v2.ClazzLectureRelation;
+import org.slevin.common.v2.Lecture;
+import org.slevin.common.v2.Teacher;
+import org.slevin.dao.AlarmDao;
 import org.slevin.dao.ClazzDao;
 import org.slevin.dao.ClazzLectureRelationDao;
 import org.slevin.dao.LectureDao;
@@ -46,7 +47,7 @@ public class ClazzLectureRelationMB extends BaseMB implements Serializable {
 	private TeacherDao teacherDao;
 	
 	@Autowired
-	private AlarmHistoryDao alarmHistoryDao;
+	private AlarmDao alarmDao;
 
 	
 	@Autowired
@@ -62,7 +63,7 @@ public class ClazzLectureRelationMB extends BaseMB implements Serializable {
 	
 	
 
-	private List<AlarmHistoryDto> alarmHistoryList;
+	private List<Alarm> alarmList;
 	
 	
 	private Date startDate;
@@ -85,19 +86,19 @@ public class ClazzLectureRelationMB extends BaseMB implements Serializable {
 		refreshList();
 	}
 	
-	public List<AlarmHistoryDto> getAlarmHistoryList() {
-		return alarmHistoryList;
+	public List<Alarm> getAlarmList() {
+		return alarmList;
 	}
 
-	public void setAlarmHistoryList(List<AlarmHistoryDto> alarmHistoryList) {
-		this.alarmHistoryList = alarmHistoryList;
+	public void setAlarmList(List<Alarm> alarmList) {
+		this.alarmList = alarmList;
 	}
 
 	public void attandenceList() throws Exception{
 		ClazzLectureRelation clazzLectureRelation = itemDao.findById(item.getId());
 		System.out.println("startDate="+item.getStartDate()+",endDate="+item.getEndDate());
-		alarmHistoryList = alarmHistoryDao.findAlarmHistory(clazzLectureRelation.getStartDate(),clazzLectureRelation.getEndDate(),clazzLectureRelation.getClazz().getName());
-		System.out.println("alarm list"+alarmHistoryList.size());
+		alarmList = alarmDao.findAlarmHistory(clazzLectureRelation.getStartDate(),clazzLectureRelation.getEndDate(),clazzLectureRelation.getClazz().getId());
+		System.out.println("alarm list"+alarmList.size());
 		System.out.println("startDate2="+item.getStartDate()+",endDate2="+item.getEndDate());
 	}
 

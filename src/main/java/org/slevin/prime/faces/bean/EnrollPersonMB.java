@@ -7,8 +7,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 
-import org.slevin.common.AlarmHistory;
-import org.slevin.common.EnrollPerson;
+import org.slevin.common.v2.AlarmHistory;
+import org.slevin.common.v2.EnrollPerson;
 import org.slevin.dao.EnrollPersonDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
