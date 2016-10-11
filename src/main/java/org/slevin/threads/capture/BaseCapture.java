@@ -45,7 +45,7 @@ public abstract class BaseCapture extends Thread implements Capture{
 		while (!stop) {
 			try {
 				faceIdentify();
-	    		Thread.sleep(200);
+	    		Thread.sleep(500);
 	    	} catch (Exception e) {
 	    	   e.printStackTrace();
 	    	}

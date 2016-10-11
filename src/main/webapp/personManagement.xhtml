@@ -92,15 +92,16 @@
 	        <h:selectOneMenu value="#{personManagementMB.item.personCategory.id}">
 				<f:selectItems value="#{personManagementMB.personCategoryList}" var="item" itemLabel="#{item.name}" itemValue="#{item.id}"/>		
 			</h:selectOneMenu>
+			<h:outputLabel value="" ></h:outputLabel>
             
             <h:outputLabel value="Mugshot" ></h:outputLabel>
             <h:outputLabel value=":" ></h:outputLabel>
             <p:graphicImage height="100" width="100" rendered="#{personManagementMB.item.mugshot!= null}" value="#{personManagementMB.imageLocation}/#{personManagementMB.item.mugshot}"></p:graphicImage>
 <!--             <h:outputLabel rendered="#{personManagementMB.item.mugshot== null}" value="" ></h:outputLabel> -->
-            <p:fileUpload rendered="#{personManagementMB.item.id eq null}" value="#{personManagementMB.file}"  uploadLabel="degistir" immediate="true"></p:fileUpload>
+            <p:fileUpload rendered="#{personManagementMB.item.id eq null}" value="#{personManagementMB.file}"  uploadLabel="degistir" immediate="true" mode="simple"></p:fileUpload>
  		    <p:fileUpload rendered="#{personManagementMB.item.id != null}" fileUploadListener="#{personManagementMB.handleFileUpload}" mode="advanced"
                      update=":form1:multiCarDetail" auto="true"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-
+			<h:outputLabel value="" ></h:outputLabel>
  		</h:panelGrid>
             
             <h:commandButton value="Create" action="#{personManagementMB.createPerson}" rendered="#{personManagementMB.item.id eq null}"></h:commandButton>

@@ -28,6 +28,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamCompositeDriver;
+import com.github.sarxos.webcam.ds.buildin.WebcamDefaultDriver;
+import com.github.sarxos.webcam.ds.ipcam.IpCamDeviceRegistry;
+import com.github.sarxos.webcam.ds.ipcam.IpCamDriver;
+import com.github.sarxos.webcam.ds.ipcam.IpCamMode;
+
 
 
 
@@ -62,17 +69,48 @@ public class IpCameraMB extends BaseMB implements Serializable {
 	
 	private List<IpCamera> itemList;
 	private IpCamera item = new IpCamera();
+	
+	public static class MyCompositeDriver extends WebcamCompositeDriver {
+
+		public MyCompositeDriver() {
+			add(new WebcamDefaultDriver());
+			add(new IpCamDriver());
+		}
+	}
+
+	// register custom composite driver
+	static {
+		Webcam.setDriver(new MyCompositeDriver());
+	}
+	
+	
+	
+	
+	
+	
 	@PostConstruct
     public void init() throws Exception {
+		
 		List<IpCamera> list= itemDao.findAll();
 		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
 			IpCamera ipCamera = (IpCamera) iterator.next();
 			itemDao.updateStatus(ipCamera.getId(), "STOPPED");
 		}
 		
+		setupMPEGCameraList();IpCamDeviceRegistry.getIpCameras();
 		refreshList();
 		refreshAfids();
     
+	}
+	
+	public void setupMPEGCameraList() throws Exception{
+		List<IpCamera> list= itemDao.findAll();
+		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+			IpCamera ipCamera = (IpCamera) iterator.next();
+			if(ipCamera.getType().equals("MJPEG")){
+				IpCamDeviceRegistry.register(ipCamera.getName(), ipCamera.getConnectionURL(), IpCamMode.PULL);
+			}
+		}
 	}
 	
 	public List<Clazz> getClazzList() throws Exception{

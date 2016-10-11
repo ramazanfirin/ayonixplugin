@@ -100,6 +100,10 @@ public class PersonManagementMB extends BaseMB implements Serializable {
 			fileOutputStream.close();
 			
 			item.setMugshot("/"+item.getId()+"/"+file.getFileName());
+			Afid afid = new Afid();
+			afid.setAfid(createAfid(a));
+			afid.setImageLocation("/"+item.getId()+"/"+file.getFileName());
+			item.getAfidList().add(afid);
 			itemDao.merge(item);
 			
 			addMessage("Person created");
@@ -126,8 +130,16 @@ public class PersonManagementMB extends BaseMB implements Serializable {
 		fileOutputStream.write(event.getFile().getContents());
 		fileOutputStream.close();
 		
+		Afid afid = new Afid();
+		afid.setAfid(createAfid(event.getFile().getContents()));
+		afid.setImageLocation("/"+item.getId()+"/"+event.getFile().getFileName());
+		item.getAfidList().add(afid);
+		
+		
 		item.setMugshot("/"+item.getId()+"/"+event.getFile().getFileName());
 		itemDao.merge(item);
+		
+	
 		
 		FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
@@ -157,11 +169,9 @@ public class PersonManagementMB extends BaseMB implements Serializable {
 			String fileName = saveToFile(item.getId(), event.getFile());
 			afid.setImageLocation(fileName);
 			afid.setPerson(item);
-			AynxImage img = sdk.LoadImage(event.getFile().getContents());
-			AynxFace[] faces = sdk.DetectFaces(img);
-			AynxFace face = faces[0];
-			sdk.PreprocessFace(face);
-			byte[] query = sdk.CreateAfid(face);
+
+			byte[] query = createAfid(event.getFile().getContents());
+			
 			afid.setAfid(query);
 			afidDao.persist(afid);
 			item=itemDao.findById(item.getId());
@@ -174,6 +184,7 @@ public class PersonManagementMB extends BaseMB implements Serializable {
 	}	
 	public void create() throws Exception{
 		item = new Person();
+		item.setId(null);
 		item.setName("");
 		item.setSurname(surname);
 		System.out.println("create");
