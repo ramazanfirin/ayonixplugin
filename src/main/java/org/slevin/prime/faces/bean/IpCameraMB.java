@@ -31,6 +31,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamCompositeDriver;
 import com.github.sarxos.webcam.ds.buildin.WebcamDefaultDriver;
+import com.github.sarxos.webcam.ds.ipcam.IpCamAuth;
 import com.github.sarxos.webcam.ds.ipcam.IpCamDeviceRegistry;
 import com.github.sarxos.webcam.ds.ipcam.IpCamDriver;
 import com.github.sarxos.webcam.ds.ipcam.IpCamMode;
@@ -108,7 +109,7 @@ public class IpCameraMB extends BaseMB implements Serializable {
 		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
 			IpCamera ipCamera = (IpCamera) iterator.next();
 			if(ipCamera.getType().equals("MJPEG")){
-				IpCamDeviceRegistry.register(ipCamera.getName(), ipCamera.getConnectionURL(), IpCamMode.PULL);
+				IpCamDeviceRegistry.register(ipCamera.getName(), ipCamera.getConnectionURL(), IpCamMode.PULL,new IpCamAuth(ipCamera.getUsername(), ipCamera.getPassword()));
 			}
 		}
 	}
